@@ -1,11 +1,11 @@
 package com.example.pluviaux_garnier_jansen.labyrinthe;
 
+import com.example.pluviaux_garnier_jansen.outils.Fichier;
 import com.example.pluviaux_garnier_jansen.personnages.IPersonnage;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-
 /**
  *
  * @author INFO Professors team
