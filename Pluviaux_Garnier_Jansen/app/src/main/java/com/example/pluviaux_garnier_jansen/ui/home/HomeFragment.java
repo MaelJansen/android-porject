@@ -1,15 +1,20 @@
 package com.example.pluviaux_garnier_jansen.ui.home;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -25,7 +30,15 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        textView.setText("Choix du labyrinthes");
+        
+        for (int i=1; i<6; i++){
+            Button button = new Button(this.getContext());
+            button.setText("Labys " + i);
+            button.setTop(i*10);
+            LinearLayout layout = (LinearLayout)binding.labysLayout;
+            layout.addView(button);
+        }
         return root;
     }
 
