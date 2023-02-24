@@ -1,9 +1,11 @@
 package com.example.pluviaux_garnier_jansen;
 
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.google.android.material.snackbar.Snackbar;
@@ -20,10 +22,11 @@ import com.example.pluviaux_garnier_jansen.databinding.ActivityMainBinding;
 
 import java.sql.SQLOutput;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    DrawView drawView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        drawView = new DrawView(this);
+        drawView.setBackgroundColor(Color.WHITE);
+        addContentView(drawView, new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT ));
         lancementDuJeu();
     }
 
@@ -59,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         AssetManager am = this.getAssets();
         Labyrinthe lab = new Labyrinthe();
         lab.creerLabyrinthe("labys/level3.txt",am);
-        lab.get
-
     }
 
     @Override
@@ -75,5 +78,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        drawView.setJ((int)view.getX(),(int)view.getY());
     }
 }
