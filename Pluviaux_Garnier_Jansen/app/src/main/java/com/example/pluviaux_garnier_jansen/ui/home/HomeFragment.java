@@ -31,10 +31,11 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         textView.setText("Choix du labyrinthes");
-        
+
         for (int i=1; i<6; i++){
             Button button = new Button(this.getContext());
             button.setText("Labys " + i);
+            button.setId(100 + i);
             button.setTop(i*10);
             LinearLayout layout = (LinearLayout)binding.labysLayout;
             layout.addView(button);
