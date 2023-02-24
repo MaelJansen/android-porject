@@ -1,6 +1,9 @@
 package com.example.pluviaux_garnier_jansen.outils;
 
+import android.content.res.AssetManager;
+
 import java.io.File;
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
@@ -10,9 +13,10 @@ import java.util.Scanner;
 public class Fichier {
     Scanner sc=null;
     
-    public Fichier(String nomFichier){
+    public Fichier(String nomFichier, AssetManager assets){
         try{
-	    sc = new Scanner(new File(nomFichier));
+            InputStream is = assets.open(nomFichier);
+	        sc = new Scanner(is);
 	}
 	catch(Exception e){ System.out.println(e);}     
     }
