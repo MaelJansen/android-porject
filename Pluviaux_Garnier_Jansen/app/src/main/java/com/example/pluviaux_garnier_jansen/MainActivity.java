@@ -1,9 +1,11 @@
 package com.example.pluviaux_garnier_jansen;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -15,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pluviaux_garnier_jansen.databinding.ActivityMainBinding;
+
+import java.sql.SQLOutput;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        lancementDuJeu();
+    }
+
+    public void lancementDuJeu(){
+        AssetManager am = this.getAssets();
+        Labyrinthe lab = new Labyrinthe();
+        lab.creerLabyrinthe("labys/level3.txt",am);
+
     }
 
     @Override

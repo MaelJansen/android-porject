@@ -1,5 +1,8 @@
 package com.example.pluviaux_garnier_jansen.labyrinthe;
 
+import android.content.res.AssetManager;
+import android.content.res.loader.AssetsProvider;
+
 import com.example.pluviaux_garnier_jansen.outils.Fichier;
 import com.example.pluviaux_garnier_jansen.personnages.IPersonnage;
 
@@ -23,8 +26,8 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
      * @param file : le fichier qui correspond au labyrinthe
      */
     @Override
-    public void creerLabyrinthe(String file) {
-        Fichier f = new Fichier(file);
+    public void creerLabyrinthe(String file, AssetManager am) {
+        Fichier f = new Fichier(file,am);
         // dimensions
         largeur = f.lireNombre();
         hauteur = f.lireNombre();

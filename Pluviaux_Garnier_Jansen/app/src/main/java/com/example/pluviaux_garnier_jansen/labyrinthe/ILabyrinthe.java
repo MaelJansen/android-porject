@@ -1,5 +1,7 @@
 package com.example.pluviaux_garnier_jansen.labyrinthe;
 
+import android.content.res.AssetManager;
+
 import com.example.pluviaux_garnier_jansen.personnages.IPersonnage;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.Collection;
 public interface ILabyrinthe extends Collection<ISalle>{
  
     // cree le labyrinthe a partir d'un fichier 
-    public void creerLabyrinthe(String file) throws IOException;
+    public void creerLabyrinthe(String file, AssetManager am) throws IOException;
 
     // renvoie les salles accessibles pour le heros
     public Collection<ISalle> sallesAccessibles(IPersonnage heros);
