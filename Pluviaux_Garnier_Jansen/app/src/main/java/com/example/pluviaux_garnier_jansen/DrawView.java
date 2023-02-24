@@ -17,10 +17,12 @@ public class DrawView extends View {
 
     public DrawView(MainActivity context){
         super(context);
-        bs[0] = new Button(context);
-        bs[1] = new Button(context);
-        bs[2] = new Button(context);
-        bs[3] = new Button(context);
+        Button btn = new Button(context);
+        btn.setId(1);
+        final int id_ = btn.getId();
+        btn.setText("button " + id_);
+        btn.setBackgroundColor(Color.rgb(70, 80, 90));
+        bs[0]=btn;
     }
 
     public DrawView(Context context) {
