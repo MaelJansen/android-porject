@@ -98,4 +98,8 @@ public class Labyrinthe extends ArrayList<ISalle> implements ILabyrinthe {
         return hauteur;
     }
 
+    public HashSet<ISalle> getSalles(){
+        return null;
+    }
+
 }
