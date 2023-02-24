@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         AssetManager am = this.getAssets();
         Labyrinthe lab = new Labyrinthe();
         lab.creerLabyrinthe("labys/level3.txt",am);
-        lab.get
+
 
     }
 

@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentHomeBinding;
 
+import java.io.File;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -32,7 +34,9 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.textHome;
         textView.setText("Choix du labyrinthes");
 
-        for (int i=1; i<6; i++){
+
+
+        for (int i=1; i<=nbFichier(); i++){
             Button button = new Button(this.getContext());
             button.setText("Labys " + i);
             button.setId(100 + i);
@@ -47,5 +51,13 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public int nbFichier() {
+        File repo = new File("labys/");
+        File[] fichiers = repo.listFiles();
+        int nb = fichiers.length;
+        String[]
+        return nb;
     }
 }
