@@ -19,4 +19,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@color/black"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/btn_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEFT"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/btn_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RIGHT"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/btn_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UP"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOWN"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

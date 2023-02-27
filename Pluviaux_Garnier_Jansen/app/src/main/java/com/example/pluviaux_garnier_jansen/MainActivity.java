@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    DrawView drawView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        drawView = new DrawView(this);
-        drawView.setBackgroundColor(Color.WHITE);
-        addContentView(drawView, new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT ));
+
         lancementDuJeu();
     }
 
@@ -83,6 +80,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        drawView.setJ((int)view.getX(),(int)view.getY());
     }
 }
