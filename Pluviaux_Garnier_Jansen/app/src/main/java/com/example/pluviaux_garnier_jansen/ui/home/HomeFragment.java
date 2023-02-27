@@ -1,5 +1,6 @@
 package com.example.pluviaux_garnier_jansen.ui.home;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentHomeBinding;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class HomeFragment extends Fragment {
 
@@ -34,9 +37,7 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.textHome;
         textView.setText("Choix du labyrinthes");
 
-
-
-        for (int i=1; i<=nbFichier(); i++){
+        for (int i=1; i<=countFilesInAssetFolder(this,"labys"); i++){
             Button button = new Button(this.getContext());
             button.setText("Labys " + i);
             button.setId(100 + i);
@@ -53,11 +54,21 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public int nbFichier() {
-        File repo = new File("labys/");
-        File[] fichiers = repo.listFiles();
-        int nb = fichiers.length;
-        String[]
-        return nb;
+    public int countFilesInAssetFolder(Fragment fragment, String folderPath) {
+        AssetManager assetManager = fragment.requireActivity().getAssets();
+        int count = 0;
+        try {
+            String[] fileNames = assetManager.list(folderPath);
+            for (String fileName : fileNames) {
+                if (!fileName.contains(".")) { // ignore directories
+                    count += countFilesInAssetFolder(fragment, folderPath + File.separator + fileName);
+                } else {
+                    count++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }
