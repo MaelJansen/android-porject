@@ -46,6 +46,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         btnRight.setOnClickListener(this);
         btnUp.setOnClickListener(this);
         btnDown.setOnClickListener(this);
+
     }
 
     @Override
@@ -57,24 +58,27 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Button id = (Button) v.findViewById(v.getId());
-
+        final int widthImage = imageView.getWidth();
         // Récupérer les positions actuelles de l'image
         int currentX = (int) imageView.getX();
         int currentY = (int) imageView.getY();
 
         // Calculer les nouvelles positions en fonction du bouton cliqué
         if (binding.btnLeft.equals(id)) {
-            currentX -= 10;
+            currentX -= widthImage;
         } else if (binding.btnRight.equals(id)) {
-            currentX += 10;
+            currentX += widthImage;
         } else if (binding.btnUp.equals(id)) {
-            currentY -= 10;
+            currentY -= widthImage;
         } else if (binding.btnDown.equals(id)) {
-            currentY += 10;
+            currentY += widthImage;
         }
 
         // Mettre à jour la position de l'image
-        imageView.setX(currentX);
-        imageView.setY(currentY);
+        imageView.animate()
+                .x(currentX)
+                .y(currentY)
+                .setDuration(500)
+                .start();
     }
 }

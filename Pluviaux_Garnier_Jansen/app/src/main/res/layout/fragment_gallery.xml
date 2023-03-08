@@ -22,41 +22,54 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@color/black"
-        android:layout_centerInParent="true" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:src="@color/black" />
 
-    <Button
-        android:id="@+id/btn_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LEFT"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RIGHT"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEFT"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            />
 
-    <Button
-        android:id="@+id/btn_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UP"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UP"
+            android:layout_toRightOf="@+id/btn_left"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/btn_left"
+            android:layout_marginTop="-40dp"/>
 
-    <Button
-        android:id="@+id/btn_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DOWN"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DOWN"
+            android:layout_toRightOf="@+id/btn_left"
+            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/btn_left"
+            />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RIGHT"
+            android:layout_toRightOf="@+id/btn_up"
+            android:layout_alignTop="@+id/btn_down"
+            android:layout_marginLeft="20dp"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
