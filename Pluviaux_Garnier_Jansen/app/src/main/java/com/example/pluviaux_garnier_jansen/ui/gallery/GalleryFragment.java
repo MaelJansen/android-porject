@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentGalleryBinding;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView;
-import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
+import com.example.pluviaux_garnier_jansen.ui.home.HomeFragment;
 
 public class GalleryFragment extends Fragment {
 
@@ -32,13 +31,14 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
         */
-        AssetManager am = this.getContext().getAssets();
+        /*AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
-        lab.creerLabyrinthe("labys/level3.txt", am);
+        lab.creerLabyrinthe(HomeFragment.laby, am);
+        System.out.println("lab en cours : " + HomeFragment.laby);
 
         super.onCreate(savedInstanceState);
         getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
-        return this.getView();
+        */return this.getView();
 
     }
 
