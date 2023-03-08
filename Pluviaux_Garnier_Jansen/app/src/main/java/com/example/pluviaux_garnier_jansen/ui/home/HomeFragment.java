@@ -1,5 +1,6 @@
 package com.example.pluviaux_garnier_jansen.ui.home;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -27,6 +28,7 @@ import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
+import com.example.pluviaux_garnier_jansen.ui.gallery.GalleryFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,9 +38,12 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
+    public static String laby = "";
+    private int index = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -51,17 +56,21 @@ public class HomeFragment extends Fragment {
         for (int i=1; i<=countFilesInAssetFolder(this,"labys"); i++){
             Button button = new Button(this.getContext());
             button.setText("Labys " + i);
-            button.setId(100 + i);
+            button.setId(i);
             button.setTop(i*10);
+            index = i;
+           button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    laby = "labys/level" + button.getId() + ".txt";
+                }
+            });
             LinearLayout layout = (LinearLayout)binding.labysLayout;
             layout.addView(button);
         }
+
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
-
-
-
-
     }
 
     @Override
