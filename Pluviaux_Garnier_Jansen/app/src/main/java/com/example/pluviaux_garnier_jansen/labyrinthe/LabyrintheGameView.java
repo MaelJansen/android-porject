@@ -4,27 +4,53 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.RelativeLayout;
+
+import com.example.pluviaux_garnier_jansen.R;
+import com.example.pluviaux_garnier_jansen.personnages.Heros;
 
 public class LabyrintheGameView extends View {
+
+    private float mHeightPercentage = 0.5f;
+
     Paint paint = new Paint();
+    Paint herosPaint = new Paint();
     Paint entryPaint = new Paint();
     Paint outPaint = new Paint();
 
     public Labyrinthe labyrinthe;
+    public Heros heros;
 
     public LabyrintheGameView(Context context, Labyrinthe lab) {
         super(context);
         this.labyrinthe = lab;
+        heros = new Heros(lab.getEntree());
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // Obtenir la hauteur de l'écran en pixels
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        int screenHeight = displayMetrics.heightPixels;
+        // Ajuster la hauteur de la vue personnalisée à 80% de la hauteur de l'écran
+        int newHeight = (int) (screenHeight * mHeightPercentage);
+        setMeasuredDimension(getMeasuredWidth(), newHeight);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
 
+        int zoom = 40;
+
         //paints
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
         paint.setStyle(Paint.Style.STROKE);
+
+        herosPaint.setColor(Color.BLUE);
 
         entryPaint.setColor(Color.RED);
         entryPaint.setStrokeWidth(3);
@@ -33,15 +59,22 @@ public class LabyrintheGameView extends View {
         outPaint.setStrokeWidth(3);
 
         //draw entry and exit
-        canvas.drawRect(labyrinthe.getEntree().getX() * 80, labyrinthe.getEntree().getY() * 80, (labyrinthe.getEntree().getX() + 1) * 80, (labyrinthe.getEntree().getY() + 1) * 80, entryPaint);
-        canvas.drawRect(labyrinthe.getSortie().getX() * 80, labyrinthe.getSortie().getY() * 80, (labyrinthe.getSortie().getX() + 1) * 80, (labyrinthe.getSortie().getY() + 1) * 80, outPaint);
+        canvas.drawRect(labyrinthe.getEntree().getX() * zoom, labyrinthe.getEntree().getY() * zoom, (labyrinthe.getEntree().getX() + 1) * zoom, (labyrinthe.getEntree().getY() + 1) * zoom, entryPaint);
+        canvas.drawRect(labyrinthe.getSortie().getX() * zoom, labyrinthe.getSortie().getY() * zoom, (labyrinthe.getSortie().getX() + 1) * zoom, (labyrinthe.getSortie().getY() + 1) * zoom, outPaint);
 
-
+        //draw heros
+        canvas.drawRect(heros.getPosition().getX() * zoom, heros.getPosition().getY() * zoom, (heros.getPosition().getX() + 1) * zoom, (heros.getPosition().getY() + 1) * zoom, herosPaint);
 
         for (ISalle salle : labyrinthe) {
-            canvas.drawRect(salle.getX() * 80, salle.getY() * 80, (salle.getX() + 1) * 80, (salle.getY() + 1) * 80, paint);
+            canvas.drawRect(salle.getX() * zoom, salle.getY() * zoom, (salle.getX() + 1) * zoom, (salle.getY() + 1) * zoom, paint);
         }
     }
+
+    public void setTranslationX(int x) {
+        super.setTranslationX(x);
+        invalidate(); // Redessine la vue avec la nouvelle position
+    }
+
 }
 
 
