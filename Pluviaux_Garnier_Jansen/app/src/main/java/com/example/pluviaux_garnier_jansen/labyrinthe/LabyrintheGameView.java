@@ -4,11 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.RelativeLayout;
 
+import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.personnages.Heros;
 
 public class LabyrintheGameView extends View {
+
+    private float mHeightPercentage = 0.5f;
+
     Paint paint = new Paint();
     Paint herosPaint = new Paint();
     Paint entryPaint = new Paint();
@@ -24,9 +30,20 @@ public class LabyrintheGameView extends View {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // Obtenir la hauteur de l'écran en pixels
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        int screenHeight = displayMetrics.heightPixels;
+        // Ajuster la hauteur de la vue personnalisée à 80% de la hauteur de l'écran
+        int newHeight = (int) (screenHeight * mHeightPercentage);
+        setMeasuredDimension(getMeasuredWidth(), newHeight);
+    }
+
+    @Override
     public void onDraw(Canvas canvas) {
 
-        int zoom = 15;
+        int zoom = 40;
 
         //paints
         paint.setColor(Color.BLACK);
@@ -52,6 +69,12 @@ public class LabyrintheGameView extends View {
             canvas.drawRect(salle.getX() * zoom, salle.getY() * zoom, (salle.getX() + 1) * zoom, (salle.getY() + 1) * zoom, paint);
         }
     }
+
+    public void setTranslationX(int x) {
+        super.setTranslationX(x);
+        invalidate(); // Redessine la vue avec la nouvelle position
+    }
+
 }
 
 

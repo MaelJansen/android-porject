@@ -38,6 +38,7 @@ public class GalleryFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
+
         return this.getView();
 
     }
