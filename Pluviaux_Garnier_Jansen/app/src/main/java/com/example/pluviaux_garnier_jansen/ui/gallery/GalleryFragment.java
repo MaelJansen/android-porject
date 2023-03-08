@@ -13,12 +13,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pluviaux_garnier_jansen.databinding.FragmentGalleryBinding;
+import com.example.pluviaux_garnier_jansen.labyrinthe.ILabyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
+import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.Salle;
+import com.example.pluviaux_garnier_jansen.personnages.Joueur;
 
 public class GalleryFragment extends Fragment implements View.OnClickListener {
 
     private FragmentGalleryBinding binding;
     private ImageView imageView;
     private Button btnLeft, btnRight, btnUp, btnDown;
+    private ILabyrinthe l;
+    private Joueur j = new Joueur(l.getEntree());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +69,6 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         // Récupérer les positions actuelles de l'image
         int currentX = (int) imageView.getX();
         int currentY = (int) imageView.getY();
-
         // Calculer les nouvelles positions en fonction du bouton cliqué
         if (binding.btnLeft.equals(id)) {
             currentX -= widthImage;
@@ -73,12 +79,15 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         } else if (binding.btnDown.equals(id)) {
             currentY += widthImage;
         }
-
-        // Mettre à jour la position de l'image
-        imageView.animate()
-                .x(currentX)
-                .y(currentY)
-                .setDuration(500)
-                .start();
+        Salle s = new Salle(currentX,currentY);
+        if(l.contains(s)) {
+            j.setSalleChoisie(s);
+            // Mettre à jour la position de l'image
+            imageView.animate()
+                    .x(currentX)
+                    .y(currentY)
+                    .setDuration(500)
+                    .start();
+        }
     }
 }

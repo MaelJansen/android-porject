@@ -14,7 +14,7 @@ public class Salle implements ISalle {
     private int x;
     private int y;
     
-    Salle(int x, int y){
+    public Salle(int x, int y){
         this.x = x;
         this.y=y;
     }
