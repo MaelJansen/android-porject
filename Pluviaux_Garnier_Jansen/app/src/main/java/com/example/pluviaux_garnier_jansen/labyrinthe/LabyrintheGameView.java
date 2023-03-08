@@ -47,7 +47,6 @@ public class LabyrintheGameView extends View {
 
         //draw heros
         canvas.drawRect(heros.getPosition().getX() * zoom, heros.getPosition().getY() * zoom, (heros.getPosition().getX() + 1) * zoom, (heros.getPosition().getY() + 1) * zoom, herosPaint);
-
         for (ISalle salle : labyrinthe) {
             canvas.drawRect(salle.getX() * zoom, salle.getY() * zoom, (salle.getX() + 1) * zoom, (salle.getY() + 1) * zoom, paint);
         }

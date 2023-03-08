@@ -34,23 +34,21 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
                              ViewGroup container, Bundle savedInstanceState) {
         GalleryViewModel galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
-/*
+
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
-        return root;
-        */
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
         lab.creerLabyrinthe("labys/level3.txt", am);
         l = lab;
-        Joueur j = new Joueur(l.getEntree());
+        j = new Joueur(l.getEntree());
         super.onCreate(savedInstanceState);
         getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
-        return this.getView();
+        return root;
 
     }
 
