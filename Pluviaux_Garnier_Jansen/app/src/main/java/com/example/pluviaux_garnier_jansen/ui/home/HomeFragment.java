@@ -25,6 +25,7 @@ import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentHomeBinding;
 import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
 
 import java.io.File;
@@ -34,7 +35,7 @@ import java.io.InputStream;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private LabyrintheView LabyrintheView;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +58,9 @@ public class HomeFragment extends Fragment {
         }
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+
+
+
 
     }
 
