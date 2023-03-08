@@ -1,5 +1,6 @@
 package com.example.pluviaux_garnier_jansen.ui.gallery;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.pluviaux_garnier_jansen.databinding.FragmentGalleryBinding;
 import com.example.pluviaux_garnier_jansen.labyrinthe.ILabyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
@@ -19,19 +18,23 @@ import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Salle;
 import com.example.pluviaux_garnier_jansen.personnages.Joueur;
 
+import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView;
+import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
+
 public class GalleryFragment extends Fragment implements View.OnClickListener {
 
     private FragmentGalleryBinding binding;
     private ImageView imageView;
     private Button btnLeft, btnRight, btnUp, btnDown;
     private ILabyrinthe l;
-    private Joueur j = new Joueur(l.getEntree());
+    private Joueur j ;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         GalleryViewModel galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
-
+/*
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -39,6 +42,16 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         return root;
+        */
+        AssetManager am = this.getContext().getAssets();
+        Labyrinthe lab = new Labyrinthe();
+        lab.creerLabyrinthe("labys/level3.txt", am);
+        l = lab;
+        Joueur j = new Joueur(l.getEntree());
+        super.onCreate(savedInstanceState);
+        getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
+        return this.getView();
+
     }
 
     @Override
