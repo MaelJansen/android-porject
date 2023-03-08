@@ -1,6 +1,11 @@
 package com.example.pluviaux_garnier_jansen.ui.home;
 
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +23,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentHomeBinding;
+import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
+import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +34,7 @@ import java.io.InputStream;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private LabyrintheView LabyrintheView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +55,9 @@ public class HomeFragment extends Fragment {
             LinearLayout layout = (LinearLayout)binding.labysLayout;
             layout.addView(button);
         }
+        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+
     }
 
     @Override

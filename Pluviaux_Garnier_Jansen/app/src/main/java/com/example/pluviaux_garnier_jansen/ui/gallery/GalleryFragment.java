@@ -1,5 +1,6 @@
 package com.example.pluviaux_garnier_jansen.ui.gallery;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pluviaux_garnier_jansen.databinding.FragmentGalleryBinding;
+import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
+import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
 
 public class GalleryFragment extends Fragment {
 
@@ -27,6 +30,7 @@ public class GalleryFragment extends Fragment {
         final TextView textView = binding.textGallery;
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+
     }
 
     @Override

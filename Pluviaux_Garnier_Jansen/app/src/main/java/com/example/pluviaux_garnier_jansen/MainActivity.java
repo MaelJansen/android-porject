@@ -52,15 +52,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        lancementDuJeu();
-    }
-
-    public void lancementDuJeu(){
-        AssetManager am = this.getAssets();
-        Labyrinthe lab = new Labyrinthe();
-        lab.creerLabyrinthe("labys/level3.txt",am);
-
-
     }
 
     @Override
