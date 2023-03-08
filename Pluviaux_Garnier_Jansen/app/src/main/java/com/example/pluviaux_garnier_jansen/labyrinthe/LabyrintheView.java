@@ -29,7 +29,6 @@ public class LabyrintheView extends View {
 
         entryAndExitPaint.setColor(Color.RED);
         entryAndExitPaint.setStrokeWidth(3);
-        entryAndExitPaint.setStyle(Paint.Style.STROKE);
 
         //draw entry
         //canvas.drawRect(labyrinthe.getEntree().getX()*10, labyrinthe.getEntree().getY()*10, iWidth, iHeight, entryAndExitPaint);
@@ -37,9 +36,10 @@ public class LabyrintheView extends View {
 
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
+        paint.setStyle(Paint.Style.STROKE);
 
         for (ISalle salle : labyrinthe){
-            canvas.drawRect(salle.getX()*10, salle.getY()*20, iWidth, iHeight, paint);
+            canvas.drawRect(salle.getX()*iWidth, salle.getY()*iHeight, (salle.getX()+1)*iWidth , (salle.getY()+1)*iHeight, paint);
         }
     }
 }
