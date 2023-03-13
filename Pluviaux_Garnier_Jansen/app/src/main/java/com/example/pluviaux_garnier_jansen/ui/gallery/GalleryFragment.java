@@ -66,14 +66,6 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         btnRight.setOnClickListener(this);
         btnUp.setOnClickListener(this);
         btnDown.setOnClickListener(this);
-        lab.creerLabyrinthe(HomeFragment.laby, am);
-        System.out.println("lab en cours : " + HomeFragment.laby);
-
-        super.onCreate(savedInstanceState);
-        getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
-
-
-        return this.getView();
 
     }
 
