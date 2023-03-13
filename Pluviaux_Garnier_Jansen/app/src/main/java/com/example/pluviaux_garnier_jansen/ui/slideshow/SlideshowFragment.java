@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.pluviaux_garnier_jansen.R;
 import com.example.pluviaux_garnier_jansen.databinding.FragmentSlideshowBinding;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
@@ -24,13 +27,13 @@ public class SlideshowFragment extends Fragment {
         SlideshowViewModel slideshowViewModel =
                 new ViewModelProvider(this).get(SlideshowViewModel.class);
 
-        /*binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-        */
+        //return root;
+
 
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
@@ -40,7 +43,8 @@ public class SlideshowFragment extends Fragment {
             super.onCreate(savedInstanceState);
             getActivity().setContentView(new LabyrintheView(this.getActivity(), lab));
         }
-        return this.getView();
+        //return this.getView();
+        return root;
     }
 
     @Override

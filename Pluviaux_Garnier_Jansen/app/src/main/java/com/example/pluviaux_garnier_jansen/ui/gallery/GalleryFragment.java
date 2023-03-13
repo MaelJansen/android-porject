@@ -44,7 +44,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
 
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
-        lab.creerLabyrinthe("labys/level3.txt", am);
+        lab.creerLabyrinthe(HomeFragment.laby, am);
         l = lab;
         j = new Joueur(l.getEntree());
         super.onCreate(savedInstanceState);
