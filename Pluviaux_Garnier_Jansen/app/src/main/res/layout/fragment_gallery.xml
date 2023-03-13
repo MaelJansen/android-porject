@@ -5,19 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.gallery.GalleryFragment">
-
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView
-            android:id="@+id/labyrintheGameView"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LEFT"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:elevation="100dp"/>
 
+            <Button
+                android:id="@+id/btn_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UP"
+                android:layout_toRightOf="@+id/btn_left"
+                android:layout_marginLeft="20dp"
+                android:layout_alignTop="@+id/btn_left"
+                android:layout_marginTop="-40dp"
+                android:elevation="100dp"/>
+
+            <Button
+                android:id="@+id/btn_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DOWN"
+                android:layout_toRightOf="@+id/btn_left"
+                android:layout_marginLeft="20dp"
+                android:layout_alignTop="@+id/btn_left"
+                android:elevation="100dp"/>
+
+            <Button
+                android:id="@+id/btn_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RIGHT"
+                android:layout_toRightOf="@+id/btn_up"
+                android:layout_alignTop="@+id/btn_down"
+                android:layout_marginLeft="20dp"
+                android:elevation="100dp"/>
+
+        </RelativeLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
