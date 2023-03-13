@@ -1,6 +1,7 @@
 package com.example.pluviaux_garnier_jansen.ui.gallery;
 
 import android.content.res.AssetManager;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.pluviaux_garnier_jansen.labyrinthe.ILabyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.Salle;
+import com.example.pluviaux_garnier_jansen.personnages.Heros;
 import com.example.pluviaux_garnier_jansen.personnages.Joueur;
 
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
@@ -25,7 +27,7 @@ import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheView;
 public class GalleryFragment extends Fragment implements View.OnClickListener {
 
     private FragmentGalleryBinding binding;
-    private ImageView imageView;
+    private LabyrintheGameView labyrinthe;
     private Button btnLeft, btnRight, btnUp, btnDown;
     private ILabyrinthe l;
     private Joueur j ;
@@ -38,23 +40,21 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
         lab.creerLabyrinthe("labys/level3.txt", am);
         l = lab;
         j = new Joueur(l.getEntree());
         super.onCreate(savedInstanceState);
-        getActivity().setContentView(new LabyrintheGameView(this.getActivity(), lab));
+        labyrinthe = new LabyrintheGameView(getContext(), lab);
+        binding.getRoot().addView(labyrinthe, 0); // ajouter à l'indice 0 pour mettre en arrière-plan
+
         return root;
 
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        imageView = (ImageView) binding.imageView;
         btnLeft = (Button) binding.btnLeft;
         btnRight = (Button) binding.btnRight;
         btnUp = (Button) binding.btnUp;
@@ -76,10 +76,10 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Button id = (Button) v.findViewById(v.getId());
-        final int widthImage = imageView.getWidth();
+        final int widthImage = 1;
         // Récupérer les positions actuelles de l'image
-        int currentX = (int) imageView.getX();
-        int currentY = (int) imageView.getY();
+        int currentX = labyrinthe.heros.getPosition().getX();
+        int currentY = labyrinthe.heros.getPosition().getY();
         // Calculer les nouvelles positions en fonction du bouton cliqué
         if (binding.btnLeft.equals(id)) {
             currentX -= widthImage;
@@ -92,13 +92,8 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         }
         Salle s = new Salle(currentX,currentY);
         if(l.contains(s)) {
-            j.setSalleChoisie(s);
-            // Mettre à jour la position de l'image
-            imageView.animate()
-                    .x(currentX)
-                    .y(currentY)
-                    .setDuration(500)
-                    .start();
+            labyrinthe.heros.setPosition(s);
+            labyrinthe.invalidate();
         }
     }
 }
