@@ -1,11 +1,13 @@
 package com.example.pluviaux_garnier_jansen.ui.gallery;
 
+import android.app.AlertDialog;
 import android.content.res.AssetManager;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -77,25 +79,32 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Button id = (Button) v.findViewById(v.getId());
-        final int widthImage = 1;
-        // Récupérer les positions actuelles de l'image
-        int currentX = labyrinthe.heros.getPosition().getX();
-        int currentY = labyrinthe.heros.getPosition().getY();
-        // Calculer les nouvelles positions en fonction du bouton cliqué
-        if (binding.btnLeft.equals(id)) {
-            currentX -= widthImage;
-        } else if (binding.btnRight.equals(id)) {
-            currentX += widthImage;
-        } else if (binding.btnUp.equals(id)) {
-            currentY -= widthImage;
-        } else if (binding.btnDown.equals(id)) {
-            currentY += widthImage;
-        }
-        Salle s = new Salle(currentX,currentY);
-        if(l.contains(s)) {
-            labyrinthe.heros.setPosition(s);
-            labyrinthe.invalidate();
+        if(labyrinthe.heros.getPosition() == l.getSortie()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Vous avez gagnée").setTitle("BRAVO !!");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            Button id = (Button) v.findViewById(v.getId());
+            final int widthImage = 1;
+            // Récupérer les positions actuelles de l'image
+            int currentX = labyrinthe.heros.getPosition().getX();
+            int currentY = labyrinthe.heros.getPosition().getY();
+            // Calculer les nouvelles positions en fonction du bouton cliqué
+            if (binding.btnLeft.equals(id)) {
+                currentX -= widthImage;
+            } else if (binding.btnRight.equals(id)) {
+                currentX += widthImage;
+            } else if (binding.btnUp.equals(id)) {
+                currentY -= widthImage;
+            } else if (binding.btnDown.equals(id)) {
+                currentY += widthImage;
+            }
+            Salle s = new Salle(currentX, currentY);
+            if (l.contains(s)) {
+                labyrinthe.heros.setPosition(s);
+                labyrinthe.invalidate();
+            }
         }
     }
 }
