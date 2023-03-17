@@ -23,6 +23,7 @@ public class LabyrintheGameView extends View {
     public Labyrinthe labyrinthe;
     public Heros heros;
 
+
     public static int heroPosX;
     public static int heroPosY;
 

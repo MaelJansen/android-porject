@@ -111,5 +111,6 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+        j.setPosition(labyrinthe.heros.getPosition());
     }
 }
