@@ -64,17 +64,21 @@ public class LabyrintheGameView extends View {
         canvas.save(); // sauvegarde l'état du canvas
         canvas.translate(-heroXInView, -heroYInView); // déplace le canvas
 
+        for (ISalle salle : labyrinthe) {
+            // Définir la couleur de remplissage à gris
+            paint.setColor(Color.GRAY);
+            paint.setStyle(Paint.Style.FILL);
+            // Remplir le rectangle avec la couleur de remplissage
+            canvas.drawRect(salle.getX() * zoom, salle.getY() * zoom, (salle.getX() + 1) * zoom, (salle.getY() + 1) * zoom, paint);
+        }
+
         //draw entry and exit
         canvas.drawRect(labyrinthe.getEntree().getX() * zoom, labyrinthe.getEntree().getY() * zoom, (labyrinthe.getEntree().getX() + 1) * zoom, (labyrinthe.getEntree().getY() + 1) * zoom, entryPaint);
         canvas.drawRect(labyrinthe.getSortie().getX() * zoom, labyrinthe.getSortie().getY() * zoom, (labyrinthe.getSortie().getX() + 1) * zoom, (labyrinthe.getSortie().getY() + 1) * zoom, outPaint);
 
+
         //draw heros
         canvas.drawRect(heros.getPosition().getX() * zoom, heros.getPosition().getY() * zoom, (heros.getPosition().getX() + 1) * zoom, (heros.getPosition().getY() + 1) * zoom, herosPaint);
-
-
-        for (ISalle salle : labyrinthe) {
-            canvas.drawRect(salle.getX() * zoom, salle.getY() * zoom, (salle.getX() + 1) * zoom, (salle.getY() + 1) * zoom, paint);
-        }
 
         canvas.restore(); // restaure l'état du canvas
 
