@@ -55,6 +55,9 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.textHome;
         textView.setText("Choix du labyrinthes");
 
+        /*
+        Permet de créer les boutons en fonction du nombre de fichier labyrinthe que l'on donne
+         */
         for (int i=1; i<=countFilesInAssetFolder(this,"labys"); i++){
             Button button = new Button(this.getContext());
             button.setText("Labys " + i);
@@ -65,6 +68,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     laby = "labys/level" + button.getId() + ".txt";
+                    // Permet d'afficher nue pop up lors du chargement du labyrinthe
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Labyrinthe" + button.getId()).setTitle("Chargement de labyrinthe");
                     AlertDialog dialog = builder.create();
@@ -83,6 +87,12 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    /**
+     * une fonction qui permet de compter le nombre de ficher présents
+     * @param fragment le fragment actif (ici homeFragment)
+     * @param folderPath le chemin du dossier contenant les labyrinthes
+     * @return
+     */
     public int countFilesInAssetFolder(Fragment fragment, String folderPath) {
         AssetManager assetManager = fragment.requireActivity().getAssets();
         int count = 0;

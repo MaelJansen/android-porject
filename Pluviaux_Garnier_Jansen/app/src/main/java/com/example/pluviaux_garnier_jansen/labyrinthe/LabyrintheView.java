@@ -13,6 +13,7 @@ import com.example.pluviaux_garnier_jansen.R;
 
 public class LabyrintheView extends View {
 
+    // Les pinceaux pour le dessin des éléments du labyrinthe
     Paint paint = new Paint();
 
     Paint heroPaint = new Paint();
@@ -25,6 +26,10 @@ public class LabyrintheView extends View {
         this.labyrinthe = lab;
     }
 
+    /**
+     * La fonction qui permet le dessin du labyrinthe (en différençiant les cases entrée et sortie et en affichant la position du hero)
+     * @param canvas
+     */
     @Override
     public void onDraw(Canvas canvas) {
         int iWidth = canvas.getWidth() / labyrinthe.getLargeur(); // Largeur

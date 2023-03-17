@@ -31,17 +31,15 @@ public class SlideshowFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        //return root;
-
 
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
+        // Permet d'afficher la map quand un labyrinthe est selectionner
         if (HomeFragment.laby != "") {
             lab.creerLabyrinthe(HomeFragment.laby, am);
             super.onCreate(savedInstanceState);
             binding.getRoot().addView(new LabyrintheView(this.getActivity(), lab));
         }
-        //return this.getView();
         return root;
     }
 

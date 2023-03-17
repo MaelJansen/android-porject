@@ -67,7 +67,7 @@ public class LabyrintheGameView extends View {
 
         int zoom = 40;
 
-        //paints
+        //Les pinceaux qui serviront pour l'affichage (le dessin) des salles du labyronthe
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
         paint.setStyle(Paint.Style.STROKE);
@@ -80,6 +80,7 @@ public class LabyrintheGameView extends View {
         outPaint.setColor(Color.GREEN);
         outPaint.setStrokeWidth(3);
 
+        // Permet d'avoir accès a la position du heros pour l'affichage de sa position sur la map
         float heroXInView = heros.getPosition().getX() * zoom - getWidth() / 2;
         float heroYInView = heros.getPosition().getY() * zoom - getHeight() / 2;
 
