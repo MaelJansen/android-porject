@@ -27,12 +27,25 @@ public class LabyrintheGameView extends View {
     public static int heroPosX;
     public static int heroPosY;
 
+    /**
+     * Constructeur de la view
+     *
+     * @param context : le contexte
+     * @param lab : le labyrinthe du jeu
+     */
     public LabyrintheGameView(Context context, Labyrinthe lab) {
         super(context);
         this.labyrinthe = lab;
         heros = new Heros(lab.getEntree());
     }
 
+    /**
+     * Cette méthode est appelée lorsque les dimensions de la vue personnalisée doivent être mesurées.
+     *
+     *
+     * @param widthMeasureSpec les spécifications de mesure de largeur
+     * @param heightMeasureSpec les spécifications de mesure de hauteur
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -44,6 +57,11 @@ public class LabyrintheGameView extends View {
         setMeasuredDimension(getMeasuredWidth(), newHeight);
     }
 
+    /**
+     * Permet de dessin le labyrinthe et le joueur
+     *
+     * @param canvas
+     */
     @Override
     public void onDraw(Canvas canvas) {
 
@@ -89,11 +107,6 @@ public class LabyrintheGameView extends View {
 
         canvas.restore(); // restaure l'état du canvas
 
-    }
-
-    public void setTranslationX(int x) {
-        super.setTranslationX(x);
-        invalidate(); // Redessine la vue avec la nouvelle position
     }
 
 }
