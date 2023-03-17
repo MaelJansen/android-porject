@@ -68,8 +68,6 @@ public class HomeFragment extends Fragment {
             LinearLayout layout = (LinearLayout)binding.labysLayout;
             layout.addView(button);
         }
-
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

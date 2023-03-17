@@ -14,6 +14,8 @@ import com.example.pluviaux_garnier_jansen.R;
 public class LabyrintheView extends View {
 
     Paint paint = new Paint();
+
+    Paint heroPaint = new Paint();
     Paint entryPaint = new Paint();
     Paint outPaint = new Paint();
 
@@ -38,13 +40,21 @@ public class LabyrintheView extends View {
         outPaint.setColor(Color.GREEN);
         outPaint.setStrokeWidth(3);
 
+        entryPaint.setColor(Color.BLUE);
+        entryPaint.setStrokeWidth(3);
+
         //draw entry
         canvas.drawRect(labyrinthe.getEntree().getX()*iWidth, labyrinthe.getEntree().getY()*iHeight, (labyrinthe.getEntree().getX()+1)*iWidth , (labyrinthe.getEntree().getY()+1)*iHeight, entryPaint);
         canvas.drawRect(labyrinthe.getSortie().getX()*iWidth, labyrinthe.getSortie().getY()*iHeight, (labyrinthe.getSortie().getX()+1)*iWidth , (labyrinthe.getSortie().getY()+1)*iHeight, outPaint);
 
 
+
         for (ISalle salle : labyrinthe){
-            canvas.drawRect(salle.getX()*iWidth, salle.getY()*iHeight, (salle.getX()+1)*iWidth , (salle.getY()+1)*iHeight, paint);
+            if(salle.getX()*iWidth == LabyrintheGameView.heroPosX*iWidth && salle.getY()*iHeight == LabyrintheGameView.heroPosY*iHeight){
+                canvas.drawRect(salle.getX()*iWidth, salle.getY()*iHeight, (salle.getX()+1)*iWidth , (salle.getY()+1)*iHeight, heroPaint);
+            } else {
+                canvas.drawRect(salle.getX()*iWidth, salle.getY()*iHeight, (salle.getX()+1)*iWidth , (salle.getY()+1)*iHeight, paint);
+            }
         }
     }
 }

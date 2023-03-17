@@ -31,13 +31,11 @@ public class SlideshowFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         //return root;
 
 
         AssetManager am = this.getContext().getAssets();
         Labyrinthe lab = new Labyrinthe();
-        System.out.println("Labyrinthe qui court : " + HomeFragment.laby);
         if (HomeFragment.laby != "") {
             lab.creerLabyrinthe(HomeFragment.laby, am);
             super.onCreate(savedInstanceState);

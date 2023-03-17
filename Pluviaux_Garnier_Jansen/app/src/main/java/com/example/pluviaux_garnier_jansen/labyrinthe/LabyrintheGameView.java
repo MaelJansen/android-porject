@@ -23,6 +23,9 @@ public class LabyrintheGameView extends View {
     public Labyrinthe labyrinthe;
     public Heros heros;
 
+    public static int heroPosX;
+    public static int heroPosY;
+
     public LabyrintheGameView(Context context, Labyrinthe lab) {
         super(context);
         this.labyrinthe = lab;
@@ -60,6 +63,9 @@ public class LabyrintheGameView extends View {
 
         float heroXInView = heros.getPosition().getX() * zoom - getWidth() / 2;
         float heroYInView = heros.getPosition().getY() * zoom - getHeight() / 2;
+
+        heroPosX = heros.getPosition().getX();
+        heroPosY = heros.getPosition().getY();
 
         canvas.save(); // sauvegarde l'état du canvas
         canvas.translate(-heroXInView, -heroYInView); // déplace le canvas
