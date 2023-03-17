@@ -41,7 +41,7 @@ public class SlideshowFragment extends Fragment {
         if (HomeFragment.laby != "") {
             lab.creerLabyrinthe(HomeFragment.laby, am);
             super.onCreate(savedInstanceState);
-            getActivity().setContentView(new LabyrintheView(this.getActivity(), lab));
+            binding.getRoot().addView(new LabyrintheView(this.getActivity(), lab));
         }
         //return this.getView();
         return root;
