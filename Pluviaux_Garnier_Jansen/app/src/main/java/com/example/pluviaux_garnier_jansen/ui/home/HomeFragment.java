@@ -1,5 +1,7 @@
 package com.example.pluviaux_garnier_jansen.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -63,6 +65,10 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     laby = "labys/level" + button.getId() + ".txt";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Labyrinthe" + button.getId()).setTitle("Chargement de labyrinthe");
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             LinearLayout layout = (LinearLayout)binding.labysLayout;
