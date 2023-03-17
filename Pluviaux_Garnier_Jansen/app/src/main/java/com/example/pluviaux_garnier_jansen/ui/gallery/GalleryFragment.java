@@ -39,15 +39,16 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        AssetManager am = this.getContext().getAssets();
-        Labyrinthe lab = new Labyrinthe();
-        lab.creerLabyrinthe(HomeFragment.laby, am);
-        l = lab;
-        j = new Joueur(l.getEntree());
-        super.onCreate(savedInstanceState);
-        labyrinthe = new LabyrintheGameView(getContext(), lab);
-        binding.getRoot().addView(labyrinthe, 0); // ajouter à l'indice 0 pour mettre en arrière-plan
-
+        if (HomeFragment.laby != "") {
+            AssetManager am = this.getContext().getAssets();
+            Labyrinthe lab = new Labyrinthe();
+            lab.creerLabyrinthe(HomeFragment.laby, am);
+            l = lab;
+            j = new Joueur(l.getEntree());
+            super.onCreate(savedInstanceState);
+            labyrinthe = new LabyrintheGameView(getContext(), lab);
+            binding.getRoot().addView(labyrinthe, 0); // ajouter à l'indice 0 pour mettre en arrière-plan
+        }
         return root;
 
     }
