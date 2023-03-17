@@ -1,31 +1,24 @@
 package com.example.pluviaux_garnier_jansen.ui.gallery;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.pluviaux_garnier_jansen.databinding.FragmentGalleryBinding;
 import com.example.pluviaux_garnier_jansen.labyrinthe.ILabyrinthe;
-import com.example.pluviaux_garnier_jansen.labyrinthe.ISalle;
-import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
-import com.example.pluviaux_garnier_jansen.labyrinthe.Salle;
-import com.example.pluviaux_garnier_jansen.personnages.Heros;
-import com.example.pluviaux_garnier_jansen.personnages.Joueur;
-
 import com.example.pluviaux_garnier_jansen.labyrinthe.Labyrinthe;
 import com.example.pluviaux_garnier_jansen.labyrinthe.LabyrintheGameView;
+import com.example.pluviaux_garnier_jansen.labyrinthe.Salle;
+import com.example.pluviaux_garnier_jansen.personnages.Joueur;
 import com.example.pluviaux_garnier_jansen.ui.home.HomeFragment;
 
 public class GalleryFragment extends Fragment implements View.OnClickListener {
@@ -34,7 +27,9 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
     private LabyrintheGameView labyrinthe;
     private Button btnLeft, btnRight, btnUp, btnDown;
     private ILabyrinthe l;
-    private Joueur j ;
+    private Joueur j;
+
+    private boolean jeuFini = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -79,12 +74,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if(labyrinthe.heros.getPosition() == l.getSortie()){
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("Vous avez gagnée").setTitle("BRAVO !!");
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        } else {
+        if(jeuFini == false) {
             Button id = (Button) v.findViewById(v.getId());
             final int widthImage = 1;
             // Récupérer les positions actuelles de l'image
@@ -105,6 +95,20 @@ public class GalleryFragment extends Fragment implements View.OnClickListener {
                 labyrinthe.heros.setPosition(s);
                 labyrinthe.invalidate();
             }
+        }
+        //Mis dans ce sense car il doit prendre la position après un déplacement
+        if (labyrinthe.heros.getPosition().equals(labyrinthe.labyrinthe.getSortie())) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Vous avez gagnée").setTitle("BRAVO !!");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Action à exécuter lorsque l'utilisateur clique sur le bouton OK
+                    jeuFini = true;
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }
